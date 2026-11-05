@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Omar Mohamed, AI Engineer</title>
+<meta name="description" content="Portfolio of Omar Mohamed, an AI Engineer building machine learning systems, from recommender engines to agentic AI.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230071e3'/%3E%3Ctext x='32' y='42' font-size='28' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EOM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<!--
+  HOW TO ADD YOUR IMAGES
+
+  Every image slot on this page is a gray placeholder. To fill one, save your picture in an
+  "images" folder next to this file using the exact name below. As soon as the file exists it
+  covers the placeholder. No other edit is needed. (Or edit the src of the matching <img>.)
+
+  images/profile.jpg                       Hero portrait, 4:5 (about 800 x 1000)
+  images/avatar.jpg                        Round avatar, square (about 400 x 400). Used in the nav and the contact section.
+
+  images/projects/resume-analyzer-1.png    Also used in the hero. Screens 1 to 3.
+  images/projects/movie-recommender-1.png  Also used in the hero. Screens 1 to 3.
+  images/projects/forest-cover-1.png       Charts 1 to 3.
+  images/projects/mall-segmentation-1.png  Charts 1 to 3.
+
+  images/experience/elevvo.jpg                  The certificate.
+  images/experience/idsc.jpg                    The certificate.
+  images/experience/depi.jpg                    The certificate.
+
+  TourMate AI screens come from the GitHub repo. See the TOURMATE_FILES list at the bottom of this file.
+
+  Orientation: each gallery has a class "gallery--portrait" or "gallery--landscape".
+  Change that one class to switch the shape of every tile in the gallery.
+-->
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #1d1d1f;
+    --muted: #6e6e73;
+    --surface: #f3f6f6;
+    --chip: #e8e8ed;
+    --line: #dedfe2;
+    --blue: #0071e3;
+    --link: #0066cc;
+    --warm: #b64400;
+    --radius: 28px;
+    --pill: 980px;
+    --font-text: 'SF Pro Text', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  html { scroll-padding-top: 44px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-text);
+    font-size: 17px;
+    line-height: 1.47;
+    letter-spacing: -0.37px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, p, figure, ul { margin: 0; }
+  h1, h2, h3, h4 { font-weight: 600; font-family: var(--font-display); }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  img { display: block; max-width: 100%; }
+  .muted { color: var(--muted); }
+
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .section-title { font-size: clamp(36px, 5vw, 56px); line-height: 1.07; letter-spacing: -0.28px; }
+
+  /* ---------- Buttons ---------- */
+  .btn { background: var(--blue); color: #fff; border-radius: var(--pill); padding: 12px 22px; }
+  a.btn:hover { text-decoration: none; opacity: .88; }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 10; height: 44px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: saturate(1.8) blur(20px);
+    -webkit-backdrop-filter: saturate(1.8) blur(20px);
+    display: flex; justify-content: center;
+  }
+  .nav__in { width: 100%; max-width: 1200px; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+  .nav a.navlink { color: var(--ink); }
+  .nav a.navlink:hover { text-decoration: none; color: var(--blue); }
+  .nav__brand { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; letter-spacing: -0.22px; }
+  .nav__links { display: flex; align-items: center; }
+  .nav__links a { font-size: 12px; letter-spacing: -0.12px; padding: 0 12px; height: 44px; display: flex; align-items: center; }
+
+  /* ---------- Avatar ---------- */
+  .avatar {
+    position: relative; display: inline-flex; align-items: center; justify-content: center; flex: none;
+    border-radius: 50%; background: var(--chip); color: #a1a1a6; overflow: hidden;
+  }
+  .avatar svg { width: 68%; height: 68%; }
+  .avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--chip); opacity: 0; transition: opacity .25s; }
+  .avatar img.is-loaded { opacity: 1; }
+  .avatar--sm { width: 28px; height: 28px; }
+  .avatar--lg { width: 96px; height: 96px; }
+
+  /* ---------- Image slots ---------- */
+  .shot {
+    position: relative; overflow: hidden;
+    background: var(--tile, var(--surface));
+    border-radius: var(--radius);
+    aspect-ratio: var(--ar, 16 / 10);
+  }
+  .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: inherit; opacity: 0; transition: opacity .25s; }
+  .shot img.is-loaded { opacity: 1; }
+  .shot__ph {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; padding: 20px; text-align: center;
+  }
+  .shot__ph strong { font-size: 14px; font-weight: 600; letter-spacing: -0.22px; line-height: 1.43; color: var(--ink); }
+  .shot__ph span { font-size: 12px; line-height: 1.33; letter-spacing: -0.12px; color: var(--muted); }
+  .shot__ph svg { width: 56px; height: 56px; color: #a1a1a6; margin-bottom: 4px; }
+
+  .gallery--portrait { --ar: 9 / 19.5; display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 20px; }
+  .gallery--portrait .shot { flex: 1 1 200px; max-width: 260px; }
+  .gallery--landscape { --ar: 16 / 10; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 56px 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .profile { --ar: 4 / 5; --tile: var(--surface); width: min(260px, 70vw); margin-bottom: 32px; }
+  .hero__label { font-size: 14px; font-weight: 600; letter-spacing: -0.22px; line-height: 1.43; }
+  .hero h1 { margin-top: 12px; font-size: clamp(48px, 8vw, 80px); line-height: 1.05; letter-spacing: -1.2px; }
+  .hero h2 { margin-top: 16px; max-width: 760px; font-size: clamp(21px, 3vw, 28px); line-height: 1.14; letter-spacing: 0.2px; }
+  .hero__lead { margin-top: 20px; max-width: 660px; color: var(--muted); }
+  .hero__cta { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 28px; }
+
+  .showcase {
+    margin-top: 72px; width: 100%; max-width: 1200px;
+    background: linear-gradient(rgb(0, 76, 148) 45%, rgb(41, 123, 196) 90%);
+    border-radius: var(--radius); padding: 56px 24px;
+    display: flex; justify-content: center; align-items: center; gap: 40px;
+  }
+  .showcase a.showcase__item { display: flex; flex-direction: column; align-items: center; gap: 16px; color: #fff; text-align: center; }
+  .showcase a.showcase__item:hover { text-decoration: none; }
+  .showcase .shot { --tile: #ffffff; }
+  .showcase__item--main .shot { --ar: 9 / 19.5; width: 240px; }
+  .showcase__item--side .shot { --ar: 16 / 10; width: 300px; }
+  .showcase__cap { display: flex; flex-direction: column; gap: 2px; font-size: 14px; line-height: 1.43; letter-spacing: -0.22px; }
+  .showcase__cap strong { font-weight: 600; font-family: var(--font-text); }
+  .showcase__cap span { font-size: 12px; line-height: 1.33; letter-spacing: -0.12px; color: rgba(255, 255, 255, 0.78); }
+
+  /* ---------- Projects (one per row) ---------- */
+  .projects { margin-top: 80px; background: var(--surface); padding: 80px 24px; }
+  .section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 24px; }
+  .stack { margin-top: 48px; display: flex; flex-direction: column; gap: 40px; }
+
+  .project { --tile: var(--surface); background: #fff; border-radius: var(--radius); padding: 40px; display: flex; flex-direction: column; gap: 48px; }
+  .project__top { display: flex; flex-wrap: wrap; gap: 40px; }
+  .project__intro { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .project__details { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+  .meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 14px; letter-spacing: -0.22px; }
+  .meta .eyebrow { font-weight: 600; color: var(--warm); }
+  .meta .date { color: var(--muted); }
+  .project__title { font-size: clamp(36px, 4.5vw, 48px); line-height: 1.1; letter-spacing: -0.14px; }
+  .project__sub { font-size: 21px; line-height: 1.38; letter-spacing: 0.23px; }
+  .metric { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+  .metric strong { font-family: var(--font-display); font-size: 40px; font-weight: 600; line-height: 1.1; letter-spacing: -0.12px; }
+  .metric span { font-size: 14px; letter-spacing: -0.22px; color: var(--muted); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { background: var(--chip); color: var(--ink); border-radius: var(--pill); padding: 4px 12px; font-size: 14px; line-height: 1.43; letter-spacing: -0.22px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 8px; }
+  .detail { border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-direction: column; gap: 4px; }
+  .detail h4 { font-size: 17px; line-height: 1.47; letter-spacing: -0.37px; }
+
+  /* ---------- Experience (one per row) ---------- */
+  .experience { padding: 80px 24px; }
+  .exp-list { margin-top: 48px; display: flex; flex-direction: column; }
+  .exp { --tile: var(--surface); border-top: 1px solid var(--line); padding: 40px 0; display: flex; flex-direction: column; gap: 16px; }
+  .exp:last-child { border-bottom: 1px solid var(--line); }
+  .exp__org { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 12px; }
+  .exp__org strong { font-weight: 600; font-family: var(--font-text); }
+  .exp__org span { color: var(--muted); }
+  .exp__org span::before { content: "·"; margin-right: 12px; }
+  .exp h3 { font-size: 28px; line-height: 1.14; letter-spacing: 0.2px; }
+  .exp ul { padding-left: 20px; color: var(--muted); }
+  .exp li { margin-bottom: 8px; }
+  .exp li:last-child { margin-bottom: 0; }
+  .exp .gallery--landscape { margin-top: 8px; }
+
+  /* ---------- Skills ---------- */
+  .skills { background: var(--surface); padding: 80px 24px; }
+  .cards { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 40px; }
+  .card { flex: 1 1 340px; min-width: 0; background: #fff; border-radius: var(--radius); padding: 40px; display: flex; flex-direction: column; gap: 20px; }
+  .card h3 { font-size: 21px; line-height: 1.38; letter-spacing: 0.23px; }
+
+  /* ---------- Education ---------- */
+  .education { padding: 80px 24px; }
+  .edu { flex: 1 1 320px; min-width: 0; background: var(--surface); border-radius: var(--radius); padding: 40px; display: flex; flex-direction: column; gap: 12px; }
+  .edu__label { font-size: 14px; font-weight: 600; letter-spacing: -0.22px; color: var(--muted); }
+  .edu h3 { font-size: 28px; line-height: 1.14; letter-spacing: 0.2px; }
+  .edu__item { display: flex; flex-direction: column; gap: 2px; }
+
+  /* ---------- Contact + footer ---------- */
+  .contact { padding: 80px 24px 120px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .contact h2 { margin-top: 24px; font-size: clamp(40px, 7vw, 80px); line-height: 1.05; letter-spacing: -1.2px; }
+  .contact p { margin-top: 20px; max-width: 560px; color: var(--muted); }
+  .contact__cta { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 28px; }
+  .footer { background: var(--surface); padding: 40px 24px; }
+  .footer__in { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; font-size: 12px; line-height: 1.33; letter-spacing: -0.12px; color: var(--muted); }
+  .footer__links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .footer a { color: var(--muted); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 960px) {
+    .navhide { display: none !important; }
+    .showcase__item--side { display: none !important; }
+  }
+  @media (max-width: 600px) {
+    .project, .card, .edu { padding: 24px; }
+    .showcase { padding: 40px 16px; }
+  }
+
+  /* =====================================================================
+     Refinement layer: ideas borrowed from the second portfolio
+     (pill nav with scroll state, hairline rows, white chips, soft lift,
+     one hero entrance, click-to-enlarge screenshots)
+     ===================================================================== */
+  :root { --ring: 0 0 0 1px rgba(0, 0, 0, .08); --lift: 0 24px 60px rgba(0, 0, 0, .22); }
+  h1, h2 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+  .skip { position: fixed; left: 16px; top: -100px; z-index: 100; background: var(--ink); color: #fff; padding: 10px 18px; border-radius: var(--pill); font-size: 14px; transition: top .2s; }
+  .skip:focus { top: 8px; text-decoration: none; }
+
+  /* Nav */
+  .nav { border-bottom: 1px solid transparent; transition: border-color .3s; }
+  .nav.s { border-color: var(--line); }
+  .nav__links { gap: 2px; }
+  .nav a.navlink:not(.navpill) { opacity: .75; transition: opacity .2s; }
+  .nav a.navlink:not(.navpill):hover, .nav a.navlink:not(.navpill)[aria-current=true] { opacity: 1; }
+  .nav a.navlink:not(.navpill)[aria-current=true] { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+  .nav a.navpill { height: 28px; margin-left: 8px; padding: 0 14px; border-radius: var(--pill); background: var(--blue); color: #fff; border: 1px solid transparent; transition: background .2s; }
+  .nav a.navpill:hover { background: var(--link); color: #fff; }
+  .nav a.navpill--o { background: transparent; color: var(--ink); border-color: #86868b; }
+  .nav a.navpill--o:hover { background: var(--chip); color: var(--ink); }
+
+  /* Hero */
+  .hero__label { color: var(--warm); font-size: 12px; }
+  .profile { width: min(200px, 60vw); margin-bottom: 28px; box-shadow: var(--ring); }
+  .stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px clamp(28px, 6vw, 64px); margin-top: 32px; }
+  .stats div { text-align: center; }
+  .stats strong { display: block; font: 600 40px/1.1 var(--font-display); letter-spacing: -0.12px; }
+  .stats span { font-size: 14px; color: var(--muted); }
+  .showcase { gap: clamp(20px, 3vw, 40px); }
+  .showcase .shot { border-radius: 20px; box-shadow: var(--lift); }
+  @keyframes rise { from { opacity: 0; translate: 0 24px; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .9s cubic-bezier(.2, .7, .2, 1) backwards; }
+    .hero > :nth-child(2) { animation-delay: .08s; } .hero > :nth-child(3) { animation-delay: .16s; }
+    .hero > :nth-child(4) { animation-delay: .24s; } .hero > :nth-child(5) { animation-delay: .32s; }
+    .hero > :nth-child(6) { animation-delay: .4s; } .hero > :nth-child(7) { animation-delay: .48s; }
+    .hero > :nth-child(8) { animation-delay: .56s; }
+  }
+
+  /* Projects */
+  .links { align-items: center; gap: 10px 22px; }
+  .links a, .section-head > a, .hero__cta a:not(.btn), .contact__cta a:not(.btn), .exp > div > a, .footer__links a {
+    display: inline-flex; align-items: center; border: 1px solid #86868b; border-radius: var(--pill); padding: 6px 16px;
+    font-size: 14px; line-height: 1.43; color: var(--ink); transition: background .2s;
+  }
+  .links a:hover, .section-head > a:hover, .hero__cta a:not(.btn):hover, .contact__cta a:not(.btn):hover, .exp > div > a:hover, .footer__links a:hover { background: var(--chip); text-decoration: none; }
+  .hero__cta a:not(.btn), .contact__cta a:not(.btn) { font-size: 17px; padding: 11px 21px; }
+  .gallery--portrait .shot, .gallery--landscape .shot { box-shadow: var(--ring); }
+  .shot img.is-loaded { cursor: zoom-in; }
+  .showcase .shot img.is-loaded { cursor: pointer; }
+
+  /* Experience: title on the left, bullets on the right */
+  .exp { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); grid-template-rows: auto 1fr auto auto; column-gap: clamp(16px, 5vw, 64px); gap: 0 clamp(16px, 5vw, 64px); }
+  .exp__org { grid-column: 1; grid-row: 1; flex-direction: column; gap: 2px; margin-bottom: 8px; }
+  .exp__org span::before { content: none; }
+  .exp h3 { grid-column: 1; grid-row: 2; align-self: start; font-size: 24px; }
+  .exp ul { grid-column: 2; grid-row: 1 / 3; list-style: none; padding-left: 0; display: grid; gap: 12px; }
+  .exp > div:not(.gallery--landscape) { grid-column: 2; grid-row: 3; margin-top: 16px; }
+  .exp .gallery--landscape { grid-column: 2; grid-row: 4; max-width: 560px; margin-top: 20px; }
+  .exp .shot img { object-fit: contain; }
+
+  /* Descriptions live in containers (project intro, project details, experience bullets) */
+  .project__intro > p.muted { background: var(--surface); border-radius: 20px; padding: 20px; }
+  .project__details { background: var(--surface); border-radius: var(--radius); padding: 20px; gap: 12px; align-self: flex-start; }
+  .detail, .exp li { background: #fff; border-radius: 20px; padding: 20px; border-top: 0; margin: 0; transition: background .25s, color .25s, transform .25s; }
+  .exp li { background: var(--surface); }
+  .detail:hover, .exp li:hover { background: var(--link); color: #fff; transform: translateY(-3px); }
+  .detail:hover .muted { color: rgba(255, 255, 255, .88); }
+
+  /* Skills: bento grid with one featured tile */
+  .skills .cards { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+  .skills .card { flex: none; grid-column: span 2; padding: 28px; gap: 18px; transition: transform .25s; }
+  .skills .card:hover { transform: translateY(-3px); }
+  .skills .card--wide { grid-column: span 4; }
+  .skills .card--full { grid-column: 1 / -1; }
+  .card__head { display: flex; align-items: center; gap: 12px; }
+  .ico { width: 40px; height: 40px; border-radius: 12px; background: #e8f1fc; color: var(--blue); display: grid; place-items: center; flex: none; }
+  .ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .skills .tag { background: var(--surface); transition: background .2s, color .2s; }
+  .skills .tag:hover { background: var(--blue); color: #fff; }
+  .skills .card--feature { background: linear-gradient(rgb(0, 76, 148) 45%, rgb(41, 123, 196) 90%); color: #fff; }
+  .skills .card--feature h3 { font-size: 28px; line-height: 1.14; }
+  .skills .card--feature .ico { background: rgba(255, 255, 255, .18); color: #fff; }
+  .skills .card--feature .tag { background: rgba(255, 255, 255, .16); color: #fff; }
+  .skills .card--feature .tag:hover { background: #fff; color: rgb(0, 76, 148); }
+
+  /* Education: open columns instead of grey cards */
+  .education .cards { gap: clamp(24px, 4vw, 48px); }
+  .edu { background: var(--surface); border-radius: var(--radius); padding: clamp(24px, 4vw, 40px); }
+  .cert-title { margin-top: 80px; }
+  .exp.exp--simple { padding: 28px 0; }
+  .exp.exp--simple > div:not(.gallery--landscape) { grid-row: 1 / 3; align-self: center; margin-top: 0; }
+
+  /* Contact + footer */
+  .contact { background: var(--surface); }
+  .avatar { box-shadow: var(--ring); }
+  .footer { border-top: 1px solid var(--line); }
+
+  /* Enlarged image viewer */
+  dialog { border: 0; padding: 0; margin: auto; border-radius: 20px; background: #fff; max-width: min(1000px, 94vw); max-height: 92vh; overflow: auto; overscroll-behavior: contain; }
+  dialog::backdrop { background: rgba(0, 0, 0, .6); }
+  dialog img { display: block; max-width: 100%; max-height: 92vh; width: auto; height: auto; margin: auto; cursor: zoom-out; }
+  .lb__x { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: rgba(210, 210, 215, .85); font-size: 16px; cursor: pointer; }
+
+  @media (max-width: 860px) {
+    .exp { display: flex; flex-direction: column; gap: 12px; }
+    .exp > div:not(.gallery--landscape) { margin-top: 0; }
+  }
+  @media (max-width: 600px) {
+    .gallery--portrait { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -24px; padding: 0 24px; scrollbar-width: none; }
+    .gallery--portrait::-webkit-scrollbar { display: none; }
+    .gallery--portrait .shot { flex: 0 0 min(240px, 70vw); scroll-snap-align: start; }
+  }
+  @media (max-width: 960px) {
+    .skills .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .skills .card, .skills .card--wide { grid-column: span 1; }
+    .skills .card--feature, .skills .card--full { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) { .skills .cards { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+  @media print { .nav, .skip, dialog { display: none !important; } .projects, .skills, .contact { background: none; } }
+</style>
+<noscript><style>.shot img, .avatar img { opacity: 1; }</style></noscript>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__in">
+    <a class="navlink nav__brand" href="#top">
+      <span class="avatar avatar--sm">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 20.5c0-4.1 3.6-6.5 8-6.5s8 2.4 8 6.5z"/></svg>
+        <img src="images/avatar.jpg" alt="Omar Mohamed" onload="this.classList.add('is-loaded')" onerror="this.remove()">
+      </span>
+      Omar Mohamed
+    </a>
+    <div class="nav__links">
+      <a class="navlink navhide" href="#projects">Projects</a>
+      <a class="navlink navhide" href="#experience">Experience</a>
+      <a class="navlink navhide" href="#skills">Skills</a>
+      <a class="navlink navhide" href="#education">Education</a>
+      <a class="navlink navpill navpill--o navhide" href="https://github.com/OmarMoawad1112">GitHub</a>
+      <a class="navlink navpill" href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <!-- Profile photo placeholder: save your picture as images/profile.jpg -->
+  <figure class="shot profile">
+    <figcaption class="shot__ph">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 20.5c0-4.1 3.6-6.5 8-6.5s8 2.4 8 6.5z"/></svg>
+      <strong>Profile photo</strong>
+      <span>Portrait goes here</span>
+    </figcaption>
+    <img src="images/profile.jpg" alt="Portrait of Omar Mohamed" onload="this.classList.add('is-loaded')" onerror="this.remove()">
+  </figure>
+
+  <p class="hero__label">AI Engineer</p>
+  <h1>Omar Mohamed</h1>
+  <h2>I build machine learning systems, from recommender engines to agentic AI.</h2>
+  <p class="hero__lead">Computers and Artificial Intelligence graduate from Cairo University. Two internships and the Microsoft AI Engineer program at DEPI gave me hands-on experience taking models from raw data to working applications, with Python, deep learning, NLP, RAG and LangGraph.</p>
+  <div class="stats">
+    <div><strong>3.54</strong><span>GPA out of 4.00</span></div>
+    <div><strong>5</strong><span>Projects built</span></div>
+    <div><strong>3</strong><span>Internships and programs</span></div>
+  </div>
+  <div class="hero__cta">
+    <a class="btn" href="#projects">View projects</a>
+    <a href="#contact">Get in touch ›</a>
+  </div>
+
+  <!-- Three different projects: Resume Analyzer, TourMate AI, Movie Recommender -->
+  <div class="showcase">
+    <a class="showcase__item showcase__item--side" href="#resume-analyzer">
+      <figure class="shot">
+        <figcaption class="shot__ph"><strong>Resume Analyzer · Screen 1</strong><span>Landscape screenshot goes here</span></figcaption>
+        <img src="images/projects/resume-analyzer-1.png" alt="AI Resume Analyzer &amp; Job Matcher screenshot" onload="this.classList.add('is-loaded')" onerror="this.remove()">
+      </figure>
+      <span class="showcase__cap"><strong>AI Resume Analyzer</strong><span>RAG and LLM web app</span></span>
+    </a>
+
+    <a class="showcase__item showcase__item--main" href="#tourmate">
+      <figure class="shot" data-tourmate-hero>
+        <figcaption class="shot__ph"><strong>TourMate · Screen 1</strong><span>Portrait screenshot goes here</span></figcaption>
+      </figure>
+      <span class="showcase__cap"><strong>TourMate AI</strong><span>Graduation project</span></span>
+    </a>
+
+    <a class="showcase__item showcase__item--side" href="#movie-recommender">
+      <figure class="shot">
+        <figcaption class="shot__ph"><strong>Movie Recommender · Screen 1</strong><span>Landscape screenshot goes here</span></figcaption>
+        <img src="images/projects/movie-recommender-1.png" alt="Movie Recommender System screenshot" onload="this.classList.add('is-loaded')" onerror="this.remove()">
+      </figure>
+      <span class="showcase__cap"><strong>Movie Recommender</strong><span>Content-based, NLP</span></span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- PROJECTS: one per row, all using the TourMate layout -->
+<section id="projects" class="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title">Selected projects</h2>
+      <a href="https://github.com/OmarMoawad1112">See all on GitHub ›</a>
+    </div>
+
+    <div class="stack">
+
+      <!-- 1. TourMate AI -->
+      <article class="project" id="tourmate">
+        <div class="project__top">
+          <div class="project__intro">
+            <div class="meta"><span class="eyebrow">Graduation project</span><span class="date">2025 – 2026</span></div>
+            <h3 class="project__title">TourMate AI</h3>
+            <h4 class="project__sub">An agentic AI travel planning assistant.</h4>
+            <p class="muted">Turns a chat request into a multi-day itinerary. I co-built the AI engine with one teammate in a 6-member team (2 AI, 2 backend, 2 Flutter): a LangGraph pipeline covering profile loading, place retrieval and scoring, LLM planning, route optimization and validation with retries.</p>
+            <div class="tags">
+              <span class="tag">LangGraph</span><span class="tag">LangChain</span><span class="tag">Gemini 2.5 Flash</span><span class="tag">Groq Llama 3.3</span><span class="tag">Pydantic</span><span class="tag">Redis</span><span class="tag">OSRM</span><span class="tag">LangSmith</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/AbdelrahmanMostafa33/TourMate-AI">View on GitHub ›</a>
+              <a href="https://drive.google.com/file/d/16zuxxu9YC1H8s7IxNZ5Pye_xYIf_IUpX/view?t=0.929">Watch the demo ›</a>
+            </div>
+          </div>
+          <div class="project__details">
+            <div class="detail"><h4>Retrieval and ranking</h4><p class="muted">LLM-based semantic interest matching, embedding similarity and multi-signal scoring: popularity, rating, proximity and diversity.</p></div>
+            <div class="detail"><h4>A resilient LLM layer</h4><p class="muted">Gemini 2.5 Flash and Groq Llama 3.3 70B / 3.1 8B through LangChain, with Pydantic structured outputs, multi-key rotation and retries so rate limits do not break generation.</p></div>
+            <div class="detail"><h4>Conversational planning and editing</h4><p class="muted">A 9-phase conversation state machine on Redis, image-based preference extraction with a vision-language model, and delta-based itinerary edits: add, remove, swap and reorder.</p></div>
+            <div class="detail"><h4>Routing and observability</h4><p class="muted">Route optimization with OSRM and 2-opt, plus LangSmith tracing with per-agent token and latency tracking.</p></div>
+          </div>
+        </div>
+        <!-- Image section. Screens are loaded from the GitHub repo (see TOURMATE_FILES at the bottom). -->
+        <div class="gallery--portrait" id="tourmate-gallery">
+          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 1</strong><span>Portrait screenshot goes here</span></figcaption></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 2</strong><span>Portrait screenshot goes here</span></figcaption></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 3</strong><span>Portrait screenshot goes here</span></figcaption></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 4</strong><span>Portrait screenshot goes here</span></figcaption></figure>
+        </div>
+      </article>
+
+      <!-- 2. AI Resume Analyzer & Job Matcher -->
+      <article class="project" id="resume-analyzer">
+        <div class="project__top">
+          <div class="project__intro">
+            <div class="meta"><span class="eyebrow">RAG and LLM web app</span><span class="date">Apr 2026</span></div>
+            <h3 class="project__title">AI Resume Analyzer &amp; Job Matcher</h3>
+            <h4 class="project__sub">Resume-to-job matching with RAG and LLM analysis.</h4>
+            <p class="muted">Analyzes resumes and matches them to job descriptions. A full pipeline for PDF parsing, semantic similarity search and structured LLM analysis, delivered through a Streamlit interface with match scores, skill gaps and actionable recommendations.</p>
+            <div class="tags">
+              <span class="tag">RAG</span><span class="tag">LangChain</span><span class="tag">LLaMA 3.3</span><span class="tag">Hugging Face</span><span class="tag">Streamlit</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/OmarMoawad1112/AI-Resume-Analyzer-Job-Matcher">View on GitHub ›</a>
+            </div>
+          </div>
+          <div class="project__details">
+            <div class="detail"><h4>PDF parsing</h4><p class="muted">Resumes are read from PDF into text as the first stage of the pipeline.</p></div>
+            <div class="detail"><h4>Semantic similarity search</h4><p class="muted">The resume is compared with the job description by semantic similarity.</p></div>
+            <div class="detail"><h4>Structured LLM analysis</h4><p class="muted">LLaMA 3.3 with LangChain turns the match into a structured analysis.</p></div>
+            <div class="detail"><h4>Streamlit interface</h4><p class="muted">Shows match scores, skill gaps and actionable recommendations.</p></div>
+          </div>
+        </div>
+        <!-- Image section -->
+        <div class="gallery--landscape">
+          <figure class="shot"><figcaption class="shot__ph"><strong>Resume Analyzer · Screen 1</strong><span>Landscape screenshot goes here</span></figcaption><img src="images/projects/resume-analyzer-1.png" alt="AI Resume Analyzer screenshot 1" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>Resume Analyzer · Screen 2</strong><span>Landscape screenshot goes here</span></figcaption><img src="images/projects/resume-analyzer-2.png" alt="AI Resume Analyzer screenshot 2" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>Resume Analyzer · Screen 3</strong><span>Landscape screenshot goes here</span></figcaption><img src="images/projects/resume-analyzer-3.png" alt="AI Resume Analyzer screenshot 3" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+        </div>
+      </article>
+
+      <!-- 3. Movie Recommender System -->
+      <article class="project" id="movie-recommender">
+        <div class="project__top">
+          <div class="project__intro">
+            <div class="meta"><span class="eyebrow">Content-based, NLP</span><span class="date">Apr 2026</span></div>
+            <h3 class="project__title">Movie Recommender System</h3>
+            <h4 class="project__sub">Content-based recommendations on transformer embeddings.</h4>
+            <p class="muted">Content-based recommendations built on transformer embeddings. Features come from movie metadata (overview, genres, cast, keywords and director) and are ranked by cosine similarity in an interactive Streamlit interface.</p>
+            <div class="tags">
+              <span class="tag">SentenceTransformers</span><span class="tag">NLP</span><span class="tag">Cosine similarity</span><span class="tag">Streamlit</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/OmarMoawad1112/Movie-Recommender-System-Content-Based">View on GitHub ›</a>
+            </div>
+          </div>
+          <div class="project__details">
+            <div class="detail"><h4>Transformer embeddings</h4><p class="muted">SentenceTransformers turn each movie's metadata into vectors.</p></div>
+            <div class="detail"><h4>Rich metadata features</h4><p class="muted">Overview, genres, cast, keywords and director feed the model.</p></div>
+            <div class="detail"><h4>Cosine similarity ranking</h4><p class="muted">Movies are ranked by how close their embeddings are.</p></div>
+            <div class="detail"><h4>Interactive Streamlit interface</h4><p class="muted">Recommendations are explored in an interactive Streamlit app.</p></div>
+          </div>
+        </div>
+        <!-- Image section -->
+        <div class="gallery--landscape">
+          <figure class="shot"><figcaption class="shot__ph"><strong>Movie Recommender · Screen 1</strong><span>Landscape screenshot goes here</span></figcaption><img src="images/projects/movie-recommender-1.png" alt="Movie Recommender screenshot 1" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>Movie Recommender · Screen 2</strong><span>Landscape screenshot goes here</span></figcaption><img src="images/projects/movie-recommender-2.png" alt="Movie Recommender screenshot 2" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>Movie Recommender · Screen 3</strong><span>Landscape screenshot goes here</span></figcaption><img src="images/projects/movie-recommender-3.png" alt="Movie Recommender screenshot 3" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+        </div>
+      </article>
+
+      <!-- 4. Forest Cover Type Classification -->
+      <article class="project" id="forest-cover">
+        <div class="project__top">
+          <div class="project__intro">
+            <div class="meta"><span class="eyebrow">Supervised learning</span><span class="date">Oct 2025</span></div>
+            <h3 class="project__title">Forest Cover Type Classification</h3>
+            <h4 class="project__sub">Predicting forest cover types from cartographic data.</h4>
+            <div class="metric"><strong>96.26%</strong><span>test accuracy with XGBoost</span></div>
+            <p class="muted">A supervised classification system for forest cover types built on cartographic data, benchmarking Decision Tree, Random Forest and XGBoost.</p>
+            <div class="tags">
+              <span class="tag">XGBoost</span><span class="tag">Random Forest</span><span class="tag">Decision Tree</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/OmarMoawad1112/forest-cover-type-classification">View on GitHub ›</a>
+            </div>
+          </div>
+          <div class="project__details">
+            <div class="detail"><h4>Supervised classification</h4><p class="muted">Forest cover type is predicted from cartographic data.</p></div>
+            <div class="detail"><h4>Model benchmark</h4><p class="muted">Decision Tree, Random Forest and XGBoost are compared on the same task.</p></div>
+          </div>
+        </div>
+        <!-- Image section -->
+        <div class="gallery--landscape">
+          <figure class="shot"><figcaption class="shot__ph"><strong>Forest Cover · Chart 1</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/forest-cover-1.png" alt="Forest Cover Type chart 1" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>Forest Cover · Chart 2</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/forest-cover-2.png" alt="Forest Cover Type chart 2" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>Forest Cover · Chart 3</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/forest-cover-3.png" alt="Forest Cover Type chart 3" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+        </div>
+      </article>
+
+      <!-- 5. Mall Customer Segmentation -->
+      <article class="project" id="mall-segmentation">
+        <div class="project__top">
+          <div class="project__intro">
+            <div class="meta"><span class="eyebrow">Clustering</span><span class="date">Oct 2025</span></div>
+            <h3 class="project__title">Mall Customer Segmentation</h3>
+            <h4 class="project__sub">Segmenting customers by income and spending.</h4>
+            <div class="metric"><strong>5 clusters</strong><span>across 200+ customers</span></div>
+            <p class="muted">K-Means and DBSCAN segment customers by income and spending behavior. The clusters include 40.5% average customers and 19.5% premium customers, giving actionable marketing insights.</p>
+            <div class="tags">
+              <span class="tag">K-Means</span><span class="tag">DBSCAN</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/OmarMoawad1112/Mall_Customers_Segmentation">View on GitHub ›</a>
+            </div>
+          </div>
+          <div class="project__details">
+            <div class="detail"><h4>Two clustering methods</h4><p class="muted">K-Means and DBSCAN are used to group the customers.</p></div>
+            <div class="detail"><h4>Income and spending behavior</h4><p class="muted">Customers are segmented by how much they earn and how they spend.</p></div>
+            <div class="detail"><h4>Actionable marketing insights</h4><p class="muted">Segments such as average customers (40.5%) and premium customers (19.5%) point to clear marketing actions.</p></div>
+          </div>
+        </div>
+        <!-- Image section -->
+        <div class="gallery--landscape">
+          <figure class="shot"><figcaption class="shot__ph"><strong>Mall Segmentation · Chart 1</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/mall-segmentation-1.png" alt="Mall Customer Segmentation chart 1" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>Mall Segmentation · Chart 2</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/mall-segmentation-2.png" alt="Mall Customer Segmentation chart 2" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>Mall Segmentation · Chart 3</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/mall-segmentation-3.png" alt="Mall Customer Segmentation chart 3" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE: one per row, each with an image section -->
+<section id="experience" class="experience">
+  <div class="wrap">
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-list">
+
+      <article class="exp">
+        <p class="exp__org"><strong>Elevvo</strong><span>Nov 2025 – Dec 2025</span></p>
+        <h3>Machine Learning Intern</h3>
+        <ul>
+          <li>Built and evaluated regression, clustering and classification models: Linear Regression, K-Means, DBSCAN, Decision Tree, Random Forest and XGBoost.</li>
+          <li>Applied feature engineering, preprocessing and SMOTE to handle imbalanced datasets and improve model performance.</li>
+          <li>Developed full ML pipelines in Scikit-learn covering data cleaning, encoding, model training and evaluation.</li>
+        </ul>
+        <div><a href="https://drive.google.com/file/d/1X2aG1NceJg0PBilcAb48vP0VVjO6Y7kG/view?usp=sharing">View certificate ›</a></div>
+        <div class="gallery--landscape">
+          <figure class="shot"><figcaption class="shot__ph"><strong>Elevvo · Certificate</strong><span>Certificate image goes here</span></figcaption><img src="images/experience/elevvo.jpg" alt="Elevvo internship certificate" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+        </div>
+      </article>
+
+      <article class="exp">
+        <p class="exp__org"><strong>IDSC</strong><span>Information Decision Support Center</span><span>Aug 2025 – Sep 2025</span></p>
+        <h3>Data Science Intern</h3>
+        <ul>
+          <li>Built and evaluated ML models (Linear Regression, K-Means, KNN) on import and export trade data to identify key patterns.</li>
+          <li>Cleaned and transformed data and engineered features to improve data quality and model performance.</li>
+          <li>Wrote and optimized complex SQL queries for data extraction, aggregation and reporting.</li>
+        </ul>
+        <div><a href="https://drive.google.com/file/d/1df8FRE1mRBNIJRqronC43u-Eh8gvXNXA/view?usp=sharing">View certificate ›</a></div>
+        <div class="gallery--landscape">
+          <figure class="shot"><figcaption class="shot__ph"><strong>IDSC · Certificate</strong><span>Certificate image goes here</span></figcaption><img src="images/experience/idsc.jpg" alt="IDSC internship certificate" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+        </div>
+      </article>
+
+      <article class="exp">
+        <p class="exp__org"><strong>Digital Egypt Pioneers</strong><span>DEPI</span><span>Jun 2025 – Dec 2025</span></p>
+        <h3>Microsoft AI Engineer Trainee</h3>
+        <ul>
+          <li>Completed a 6-month intensive ML and AI training program sponsored by Egypt's Ministry of Communications and Information Technology.</li>
+          <li>Gained hands-on experience in supervised and unsupervised learning, feature engineering, model evaluation, deep learning, NLP and computer vision.</li>
+          <li>Built ML solutions with Python, Scikit-learn, Pandas and NumPy through collaborative projects and workshops.</li>
+        </ul>
+        <div><a href="https://drive.google.com/file/d/1yPAKj-GTn3L8dXUtYYsxAYkxVC4kzv1y/view?usp=drive_link">View certificate ›</a></div>
+        <div class="gallery--landscape">
+          <figure class="shot"><figcaption class="shot__ph"><strong>DEPI · Certificate</strong><span>Certificate image goes here</span></figcaption><img src="images/experience/depi.jpg" alt="DEPI training certificate" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills">
+  <div class="wrap">
+    <h2 class="section-title">Skills</h2>
+    <div class="cards">
+      <div class="card"><div class="card__head"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><h3>Programming &amp; tools</h3></div><div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Redis</span><span class="tag">Power BI</span><span class="tag">Excel</span></div></div>
+      <div class="card"><div class="card__head"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span><h3>ML / AI frameworks</h3></div><div class="tags"><span class="tag">Scikit-learn</span><span class="tag">TensorFlow</span><span class="tag">PyTorch</span><span class="tag">XGBoost</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">Hugging Face</span><span class="tag">Streamlit</span></div></div>
+      <div class="card"><div class="card__head"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><h3>LLM providers</h3></div><div class="tags"><span class="tag">Google Gemini</span><span class="tag">Groq (Llama 3)</span><span class="tag">Hugging Face Inference</span></div></div>
+      <div class="card card--wide card--feature"><div class="card__head"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span><h3>ML expertise</h3></div><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">NLP</span><span class="tag">Computer Vision</span><span class="tag">RAG</span><span class="tag">LLM applications</span><span class="tag">Agentic AI</span><span class="tag">Multi-agent systems</span><span class="tag">Prompt engineering</span><span class="tag">Vision-language models</span><span class="tag">Embeddings &amp; semantic search</span></div></div>
+      <div class="card"><div class="card__head"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><h3>Data</h3></div><div class="tags"><span class="tag">Data analysis</span><span class="tag">Data cleaning</span><span class="tag">Feature engineering</span><span class="tag">Predictive modeling</span><span class="tag">Model evaluation</span><span class="tag">Data visualization</span><span class="tag">Statistics &amp; probability</span></div></div>
+      <div class="card card--full"><div class="card__head"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>Soft skills</h3></div><div class="tags"><span class="tag">Problem solving</span><span class="tag">Critical thinking</span><span class="tag">Communication</span><span class="tag">Teamwork</span><span class="tag">Presentation</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="education">
+  <div class="wrap">
+    <h2 class="section-title">Education</h2>
+    <div class="cards">
+      <div class="edu">
+        <span class="edu__label">Degree</span>
+        <h3>Cairo University</h3>
+        <p>B.Sc. in Computers and Artificial Intelligence</p>
+        <p class="muted">Jul 2026 · GPA 3.54 / 4.00</p>
+      </div>
+      <div class="edu">
+        <span class="edu__label">Languages</span>
+        <h3>Arabic and English</h3>
+        <p>Arabic <span class="muted">· Native</span></p>
+        <p>English <span class="muted">· B2, Upper-Intermediate</span></p>
+      </div>
+    </div>
+    <h2 class="section-title cert-title">Certifications</h2>
+    <div class="exp-list">
+      <article class="exp exp--simple">
+        <p class="exp__org"><strong>Coursera</strong><span>March 2026</span></p>
+        <h3>Machine Learning Specialization</h3>
+        <div><a href="https://coursera.org/share/a0ce5a7b27aa5016c408a2f0795fb8bd">View certificate ›</a></div>
+      </article>
+
+      <article class="exp exp--simple">
+        <p class="exp__org"><strong>DataCamp</strong><span>July 2025</span></p>
+        <h3>Data Analyst in Python Career Track</h3>
+        <div><a href="https://drive.google.com/file/d/16YDtxrsb9m5rfty_j84uBeWiqAggOaLs/view?usp=sharing">View certificate ›</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <!-- Avatar placeholder: save your picture as images/avatar.jpg -->
+  <span class="avatar avatar--lg">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 20.5c0-4.1 3.6-6.5 8-6.5s8 2.4 8 6.5z"/></svg>
+    <img src="images/avatar.jpg" alt="Omar Mohamed" onload="this.classList.add('is-loaded')" onerror="this.remove()">
+  </span>
+  <h2>Let's work together.</h2>
+  <p>Have a role, a project or an idea in mind? I'd love to hear about it.</p>
+  <div class="contact__cta">
+    <a class="btn" href="mailto:omar.maud.11122002@gmail.com">Email me</a>
+    <a href="https://www.linkedin.com/in/omar-mowad/">LinkedIn ›</a>
+    <a href="https://github.com/OmarMoawad1112">GitHub ›</a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__in">
+    <span>© 2026 Omar Mohamed · Giza, Egypt</span>
+    <div class="footer__links">
+      <a href="mailto:omar.maud.11122002@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/omar-mowad/">LinkedIn</a>
+      <a href="https://github.com/OmarMoawad1112">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* TOURMATE AI SCREENS (from the GitHub repo)
+     Paste the file names found in docs/App Screens of
+     github.com/AbdelrahmanMostafa33/TourMate-AI into the list below, in the order you want them shown,
+     for example "Screen 1.png". The first one is also used in the hero.
+     A full URL, or a path that starts with "images/", works too.
+     While the list is empty the placeholders stay in place. */
+  const TOURMATE_BASE = "https://raw.githubusercontent.com/AbdelrahmanMostafa33/TourMate-AI/main/docs/App%20Screens/";
+  const TOURMATE_FILES = [
+    // "Screen 1.png",
+    // "Screen 2.png",
+  ];
+
+  (function () {
+    if (!TOURMATE_FILES.length) return;
+    const url = (f) => /^(https?:|images\/)/.test(f) ? f : TOURMATE_BASE + encodeURIComponent(f);
+    function addImage(parent, file, alt, onFail) {
+      const img = document.createElement('img');
+      img.alt = alt;
+      img.loading = 'lazy';
+      img.addEventListener('load', function () { img.classList.add('is-loaded'); });
+      img.addEventListener('error', onFail);
+      img.src = url(file);
+      parent.appendChild(img);
+    }
+    const hero = document.querySelector('[data-tourmate-hero]');
+    if (hero) {
+      addImage(hero, TOURMATE_FILES[0], 'TourMate AI app screen 1', function () { this.remove(); });
+    }
+    const gallery = document.getElementById('tourmate-gallery');
+    if (gallery) {
+      gallery.textContent = '';
+      TOURMATE_FILES.forEach(function (file, i) {
+        const fig = document.createElement('figure');
+        fig.className = 'shot';
+        addImage(fig, file, 'TourMate AI app screen ' + (i + 1), function () { fig.remove(); });
+        gallery.appendChild(fig);
+      });
+    }
+  })();
+</script>
+
+<dialog id="lightbox" aria-label="Enlarged image"><button class="lb__x" type="button" aria-label="Close image">✕</button><img alt=""></dialog>
+
+<script>
+  (function () {
+    const nav = document.querySelector('.nav');
+    const onScroll = () => nav.classList.toggle('s', scrollY > 8);
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* Highlight the nav link for the section crossing the middle of the screen */
+    const links = [...document.querySelectorAll('.nav__links a[href^="#"]')];
+    const spy = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) links.forEach(a => a.setAttribute('aria-current', a.hash === '#' + e.target.id));
+    }), { rootMargin: '-45% 0px -50% 0px' });
+    ['projects', 'experience', 'skills', 'education', 'contact'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) spy.observe(el);
+    });
+
+    /* Click a loaded screenshot to see it full size */
+    const lb = document.getElementById('lightbox'), li = lb.querySelector('img');
+    document.addEventListener('click', e => {
+      const m = e.target.closest('.shot img.is-loaded');
+      if (m && !m.closest('a')) { li.src = m.currentSrc || m.src; li.alt = m.alt; lb.showModal(); return; }
+      if (e.target === lb || e.target === li || e.target.closest('.lb__x')) lb.close();
+    });
+  })();
+</script>
+</body>
+</html>
