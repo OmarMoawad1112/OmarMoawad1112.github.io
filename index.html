@@ -23,8 +23,6 @@
 
   images/projects/resume-analyzer-1.png    Also used in the hero. Screens 1 to 3.
   images/projects/movie-recommender-1.png  Also used in the hero. Screens 1 to 3.
-  images/projects/forest-cover-1.png       Charts 1 to 3.
-  images/projects/mall-segmentation-1.png  Charts 1 to 3.
 
   images/experience/elevvo.jpg                  The certificate.
   images/experience/idsc.jpg                    The certificate.
@@ -247,8 +245,15 @@
   .nav a.navpill--o:hover { background: var(--chip); color: var(--ink); }
 
   /* Hero */
-  .hero__label { color: var(--warm); font-size: 12px; }
-  .profile { width: min(200px, 60vw); margin-bottom: 28px; box-shadow: var(--ring); }
+  .hero__top { width: 100%; max-width: 1200px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; text-align: left; }
+  .hero__text { display: flex; flex-direction: column; align-items: flex-start; }
+  .hero h1 { margin-top: 0; font-size: clamp(44px, 6vw, 76px); }
+  .hero .profile { width: 100%; margin: 0; }
+  .hero .stats, .hero .hero__cta { justify-content: flex-start; }
+  .hero .stats div { text-align: left; }
+  .hero__label { margin-top: 8px; font-family: var(--font-display); font-size: clamp(24px, 3.5vw, 34px); line-height: 1.15; letter-spacing: .2px; color: var(--warm); }
+  .hero__lead { max-width: 760px; margin-top: 28px; padding: 24px 28px; background: var(--surface); border-radius: var(--radius); color: var(--ink); font-size: clamp(18px, 2.2vw, 21px); line-height: 1.45; letter-spacing: -0.2px; }
+  .profile { width: min(240px, 70vw); margin-bottom: 28px; box-shadow: var(--ring); }
   .stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px clamp(28px, 6vw, 64px); margin-top: 32px; }
   .stats div { text-align: center; }
   .stats strong { display: block; font: 600 40px/1.1 var(--font-display); letter-spacing: -0.12px; }
@@ -257,11 +262,10 @@
   .showcase .shot { border-radius: 20px; box-shadow: var(--lift); }
   @keyframes rise { from { opacity: 0; translate: 0 24px; } }
   @media (prefers-reduced-motion: no-preference) {
-    .hero > * { animation: rise .9s cubic-bezier(.2, .7, .2, 1) backwards; }
-    .hero > :nth-child(2) { animation-delay: .08s; } .hero > :nth-child(3) { animation-delay: .16s; }
-    .hero > :nth-child(4) { animation-delay: .24s; } .hero > :nth-child(5) { animation-delay: .32s; }
-    .hero > :nth-child(6) { animation-delay: .4s; } .hero > :nth-child(7) { animation-delay: .48s; }
-    .hero > :nth-child(8) { animation-delay: .56s; }
+    .hero__text > *, .hero .profile, .showcase { animation: rise .9s cubic-bezier(.2, .7, .2, 1) backwards; }
+    .hero__text > :nth-child(2) { animation-delay: .08s; } .hero__text > :nth-child(3) { animation-delay: .16s; }
+    .hero__text > :nth-child(4) { animation-delay: .24s; } .hero__text > :nth-child(5) { animation-delay: .32s; }
+    .hero .profile { animation-delay: .15s; } .showcase { animation-delay: .5s; }
   }
 
   /* Projects */
@@ -330,6 +334,11 @@
   .lb__x { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: rgba(210, 210, 215, .85); font-size: 16px; cursor: pointer; }
 
   @media (max-width: 860px) {
+    .hero__top { grid-template-columns: 1fr; text-align: center; }
+    .hero__text { align-items: center; }
+    .hero .profile { order: -1; max-width: 340px; margin: 0 auto; }
+    .hero .stats, .hero .hero__cta { justify-content: center; }
+    .hero .stats div { text-align: center; }
     .exp { display: flex; flex-direction: column; gap: 12px; }
     .exp > div:not(.gallery--landscape) { margin-top: 0; }
   }
@@ -375,28 +384,30 @@
 
 <!-- HERO -->
 <header class="hero">
-  <!-- Profile photo placeholder: save your picture as images/profile.jpg -->
-  <figure class="shot profile">
-    <figcaption class="shot__ph">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 20.5c0-4.1 3.6-6.5 8-6.5s8 2.4 8 6.5z"/></svg>
-      <strong>Profile photo</strong>
-      <span>Portrait goes here</span>
-    </figcaption>
-    <img src="images/profile.jpg" alt="Portrait of Omar Mohamed" onload="this.classList.add('is-loaded')" onerror="this.remove()">
-  </figure>
-
-  <p class="hero__label">AI Engineer</p>
-  <h1>Omar Mohamed</h1>
-  <h2>I build machine learning systems, from recommender engines to agentic AI.</h2>
-  <p class="hero__lead">Computers and Artificial Intelligence graduate from Cairo University. Two internships and the Microsoft AI Engineer program at DEPI gave me hands-on experience taking models from raw data to working applications, with Python, deep learning, NLP, RAG and LangGraph.</p>
-  <div class="stats">
-    <div><strong>3.54</strong><span>GPA out of 4.00</span></div>
-    <div><strong>5</strong><span>Projects built</span></div>
-    <div><strong>3</strong><span>Internships and programs</span></div>
-  </div>
-  <div class="hero__cta">
-    <a class="btn" href="#projects">View projects</a>
-    <a href="#contact">Get in touch ›</a>
+  <div class="hero__top">
+    <div class="hero__text">
+      <h1>Omar Mohamed</h1>
+      <p class="hero__label">AI Engineer</p>
+      <p class="hero__lead">Computers and Artificial Intelligence graduate from Cairo University. Two internships and the Microsoft AI Engineer program at DEPI gave me hands-on experience taking models from raw data to working applications, with Python, deep learning, NLP, RAG and LangGraph.</p>
+      <div class="stats">
+        <div><strong>3.54</strong><span>GPA out of 4.00</span></div>
+        <div><strong>3</strong><span>Projects built</span></div>
+        <div><strong>3</strong><span>Internships and programs</span></div>
+      </div>
+      <div class="hero__cta">
+        <a class="btn" href="#projects">View projects</a>
+        <a href="#contact">Get in touch ›</a>
+      </div>
+    </div>
+    <!-- Profile photo: save your picture as images/profile.jpg -->
+    <figure class="shot profile">
+      <figcaption class="shot__ph">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 20.5c0-4.1 3.6-6.5 8-6.5s8 2.4 8 6.5z"/></svg>
+        <strong>Profile photo</strong>
+        <span>Portrait goes here</span>
+      </figcaption>
+      <img src="images/profile.jpg" alt="Portrait of Omar Mohamed" onload="this.classList.add('is-loaded')" onerror="this.remove()">
+    </figure>
   </div>
 
   <!-- Three different projects: Resume Analyzer, TourMate AI, Movie Recommender -->
@@ -527,65 +538,6 @@
           <figure class="shot"><figcaption class="shot__ph"><strong>Movie Recommender · Screen 1</strong><span>Landscape screenshot goes here</span></figcaption><img src="images/projects/movie-recommender-1.png" alt="Movie Recommender screenshot 1" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
           <figure class="shot"><figcaption class="shot__ph"><strong>Movie Recommender · Screen 2</strong><span>Landscape screenshot goes here</span></figcaption><img src="images/projects/movie-recommender-2.png" alt="Movie Recommender screenshot 2" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
           <figure class="shot"><figcaption class="shot__ph"><strong>Movie Recommender · Screen 3</strong><span>Landscape screenshot goes here</span></figcaption><img src="images/projects/movie-recommender-3.png" alt="Movie Recommender screenshot 3" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
-        </div>
-      </article>
-
-      <!-- 4. Forest Cover Type Classification -->
-      <article class="project" id="forest-cover">
-        <div class="project__top">
-          <div class="project__intro">
-            <div class="meta"><span class="eyebrow">Supervised learning</span><span class="date">Oct 2025</span></div>
-            <h3 class="project__title">Forest Cover Type Classification</h3>
-            <h4 class="project__sub">Predicting forest cover types from cartographic data.</h4>
-            <div class="metric"><strong>96.26%</strong><span>test accuracy with XGBoost</span></div>
-            <p class="muted">A supervised classification system for forest cover types built on cartographic data, benchmarking Decision Tree, Random Forest and XGBoost.</p>
-            <div class="tags">
-              <span class="tag">XGBoost</span><span class="tag">Random Forest</span><span class="tag">Decision Tree</span>
-            </div>
-            <div class="links">
-              <a href="https://github.com/OmarMoawad1112/forest-cover-type-classification">View on GitHub ›</a>
-            </div>
-          </div>
-          <div class="project__details">
-            <div class="detail"><h4>Supervised classification</h4><p class="muted">Forest cover type is predicted from cartographic data.</p></div>
-            <div class="detail"><h4>Model benchmark</h4><p class="muted">Decision Tree, Random Forest and XGBoost are compared on the same task.</p></div>
-          </div>
-        </div>
-        <!-- Image section -->
-        <div class="gallery--landscape">
-          <figure class="shot"><figcaption class="shot__ph"><strong>Forest Cover · Chart 1</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/forest-cover-1.png" alt="Forest Cover Type chart 1" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
-          <figure class="shot"><figcaption class="shot__ph"><strong>Forest Cover · Chart 2</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/forest-cover-2.png" alt="Forest Cover Type chart 2" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
-          <figure class="shot"><figcaption class="shot__ph"><strong>Forest Cover · Chart 3</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/forest-cover-3.png" alt="Forest Cover Type chart 3" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
-        </div>
-      </article>
-
-      <!-- 5. Mall Customer Segmentation -->
-      <article class="project" id="mall-segmentation">
-        <div class="project__top">
-          <div class="project__intro">
-            <div class="meta"><span class="eyebrow">Clustering</span><span class="date">Oct 2025</span></div>
-            <h3 class="project__title">Mall Customer Segmentation</h3>
-            <h4 class="project__sub">Segmenting customers by income and spending.</h4>
-            <div class="metric"><strong>5 clusters</strong><span>across 200+ customers</span></div>
-            <p class="muted">K-Means and DBSCAN segment customers by income and spending behavior. The clusters include 40.5% average customers and 19.5% premium customers, giving actionable marketing insights.</p>
-            <div class="tags">
-              <span class="tag">K-Means</span><span class="tag">DBSCAN</span>
-            </div>
-            <div class="links">
-              <a href="https://github.com/OmarMoawad1112/Mall_Customers_Segmentation">View on GitHub ›</a>
-            </div>
-          </div>
-          <div class="project__details">
-            <div class="detail"><h4>Two clustering methods</h4><p class="muted">K-Means and DBSCAN are used to group the customers.</p></div>
-            <div class="detail"><h4>Income and spending behavior</h4><p class="muted">Customers are segmented by how much they earn and how they spend.</p></div>
-            <div class="detail"><h4>Actionable marketing insights</h4><p class="muted">Segments such as average customers (40.5%) and premium customers (19.5%) point to clear marketing actions.</p></div>
-          </div>
-        </div>
-        <!-- Image section -->
-        <div class="gallery--landscape">
-          <figure class="shot"><figcaption class="shot__ph"><strong>Mall Segmentation · Chart 1</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/mall-segmentation-1.png" alt="Mall Customer Segmentation chart 1" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
-          <figure class="shot"><figcaption class="shot__ph"><strong>Mall Segmentation · Chart 2</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/mall-segmentation-2.png" alt="Mall Customer Segmentation chart 2" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
-          <figure class="shot"><figcaption class="shot__ph"><strong>Mall Segmentation · Chart 3</strong><span>Landscape image goes here</span></figcaption><img src="images/projects/mall-segmentation-3.png" alt="Mall Customer Segmentation chart 3" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
         </div>
       </article>
 
