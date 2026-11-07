@@ -21,14 +21,13 @@
   images/profile.jpg                       Hero portrait, 4:5 (about 800 x 1000)
   images/avatar.jpg                        Round avatar, square (about 400 x 400). Used in the nav and the contact section.
 
+  images/projects/tourmate-1.png           Also used in the hero. Screens 1 to 4 (portrait phone screens).
   images/projects/resume-analyzer-1.png    Also used in the hero. Screens 1 to 3.
   images/projects/movie-recommender-1.png  Also used in the hero. Screens 1 to 3.
 
   images/experience/elevvo.jpg                  The certificate.
   images/experience/idsc.jpg                    The certificate.
   images/experience/depi.jpg                    The certificate.
-
-  TourMate AI screens come from the GitHub repo. See the TOURMATE_FILES list at the bottom of this file.
 
   Orientation: each gallery has a class "gallery--portrait" or "gallery--landscape".
   Change that one class to switch the shape of every tile in the gallery.
@@ -249,15 +248,55 @@
   .hero__text { display: flex; flex-direction: column; align-items: flex-start; }
   .hero h1 { margin-top: 0; font-size: clamp(44px, 6vw, 76px); }
   .hero .profile { width: 100%; margin: 0; }
-  .hero .stats, .hero .hero__cta { justify-content: flex-start; }
-  .hero .stats div { text-align: left; }
+  .hero .hero__cta { justify-content: flex-start; }
   .hero__label { margin-top: 8px; font-family: var(--font-display); font-size: clamp(24px, 3.5vw, 34px); line-height: 1.15; letter-spacing: .2px; color: var(--warm); }
-  .hero__lead { max-width: 760px; margin-top: 28px; padding: 24px 28px; background: var(--surface); border-radius: var(--radius); color: var(--ink); font-size: clamp(18px, 2.2vw, 21px); line-height: 1.45; letter-spacing: -0.2px; }
   .profile { width: min(240px, 70vw); margin-bottom: 28px; box-shadow: var(--ring); }
-  .stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px clamp(28px, 6vw, 64px); margin-top: 32px; }
-  .stats div { text-align: center; }
-  .stats strong { display: block; font: 600 40px/1.1 var(--font-display); letter-spacing: -0.12px; }
-  .stats span { font-size: 14px; color: var(--muted); }
+
+  /* Intro card: label, highlighted copy and core-stack chips */
+  .hero__lead {
+    position: relative; overflow: hidden; width: 100%; max-width: 760px; margin-top: 28px;
+    padding: 24px 28px 22px 32px; display: flex; flex-direction: column; gap: 14px; text-align: left;
+    background: var(--surface); border-radius: var(--radius); color: #424245;
+    font-size: clamp(17px, 2vw, 20px); line-height: 1.5; letter-spacing: -0.2px;
+  }
+  .hero__lead::before { content: ""; position: absolute; left: 0; top: 24px; bottom: 24px; width: 4px; border-radius: 0 4px 4px 0; background: linear-gradient(rgb(0, 76, 148), rgb(41, 123, 196)); }
+  .lead__tag { display: inline-flex; align-items: center; align-self: flex-start; gap: 8px; font-size: 14px; font-weight: 600; line-height: 1; letter-spacing: -0.22px; color: var(--link); }
+  .lead__tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px rgba(0, 113, 227, .16); }
+  .hero__lead strong { font-weight: 600; color: var(--ink); background: linear-gradient(transparent 62%, rgba(0, 113, 227, .16) 0); border-radius: 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .lead__stack { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .lead__k { font-size: 13px; line-height: 1; letter-spacing: -0.12px; color: var(--muted); }
+  .lead__chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .lead__chips li { display: inline-flex; align-items: center; gap: 7px; background: #fff; color: var(--ink); border-radius: var(--pill); padding: 4px 12px; font-size: 14px; line-height: 1.43; letter-spacing: -0.22px; box-shadow: var(--ring); transition: background .2s, color .2s; }
+  .lead__chips li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); transition: background .2s; }
+  .lead__chips li:hover { background: var(--blue); color: #fff; }
+  .lead__chips li:hover::before { background: #fff; }
+
+  /* Stat cards: icon, gradient number, label and a small meter */
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: 100%; max-width: 760px; margin-top: 16px; }
+  .stat { position: relative; display: flex; flex-direction: column; padding: 18px 18px 16px; background: #fff; color: var(--ink); text-align: left; border-radius: 24px; box-shadow: var(--ring), 0 10px 30px rgba(0, 0, 0, .05); transition: transform .25s, box-shadow .25s; }
+  .stat:hover { transform: translateY(-3px); box-shadow: var(--ring), 0 18px 40px rgba(0, 0, 0, .1); text-decoration: none; }
+  .stat__ico { width: 36px; height: 36px; margin-bottom: 14px; border-radius: 11px; background: #e8f1fc; color: var(--blue); display: grid; place-items: center; }
+  .stat__ico svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .stat__num { display: flex; align-items: baseline; gap: 4px; font: 600 clamp(32px, 4vw, 44px)/1 var(--font-display); letter-spacing: -0.5px; font-variant-numeric: tabular-nums; }
+  .stat__num .n { background: linear-gradient(rgb(0, 76, 148), rgb(41, 123, 196)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat__num small { font: 600 15px var(--font-text); letter-spacing: -0.22px; color: var(--muted); }
+  .stat__label { margin: 8px 0 14px; font-size: 14px; line-height: 1.35; letter-spacing: -0.22px; color: var(--muted); }
+  .stat__meter { display: block; height: 4px; margin-top: auto; border-radius: 4px; background: var(--chip); overflow: hidden; }
+  .stat__meter i { display: block; height: 100%; width: var(--v, 100%); border-radius: 4px; background: linear-gradient(90deg, rgb(41, 123, 196), rgb(0, 76, 148)); transform-origin: left center; }
+  .stat__meter--seg { display: flex; gap: 4px; background: none; overflow: visible; }
+  .stat__meter--seg i { flex: 1; width: auto; }
+  @keyframes fill { from { transform: scaleX(0); } }
+  @media (prefers-reduced-motion: no-preference) {
+    .stat__meter i { animation: fill 1s cubic-bezier(.2, .7, .2, 1) .9s backwards; }
+    .stat__meter--seg i:nth-child(2) { animation-delay: 1.05s; } .stat__meter--seg i:nth-child(3) { animation-delay: 1.2s; }
+  }
+  @media (max-width: 560px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { display: grid; grid-template-columns: auto auto minmax(0, 1fr); align-items: center; column-gap: 14px; padding: 16px 18px; }
+    .stat__ico { margin: 0; }
+    .stat__label { margin: 0; }
+    .stat__meter { grid-column: 1 / -1; margin-top: 14px; }
+  }
   .showcase { gap: clamp(20px, 3vw, 40px); }
   .showcase .shot { border-radius: 20px; box-shadow: var(--lift); }
   @keyframes rise { from { opacity: 0; translate: 0 24px; } }
@@ -337,8 +376,7 @@
     .hero__top { grid-template-columns: 1fr; text-align: center; }
     .hero__text { align-items: center; }
     .hero .profile { order: -1; max-width: 340px; margin: 0 auto; }
-    .hero .stats, .hero .hero__cta { justify-content: center; }
-    .hero .stats div { text-align: center; }
+    .hero .hero__cta { justify-content: center; }
     .exp { display: flex; flex-direction: column; gap: 12px; }
     .exp > div:not(.gallery--landscape) { margin-top: 0; }
   }
@@ -388,11 +426,35 @@
     <div class="hero__text">
       <h1>Omar Mohamed</h1>
       <p class="hero__label">AI Engineer</p>
-      <p class="hero__lead">Computers and Artificial Intelligence graduate from Cairo University. Two internships and the Microsoft AI Engineer program at DEPI gave me hands-on experience taking models from raw data to working applications, with Python, deep learning, NLP, RAG and LangGraph.</p>
+      <div class="hero__lead">
+        <span class="lead__tag">About me</span>
+        <p>Computers and Artificial Intelligence graduate from <strong>Cairo University</strong>. Two internships and the <strong>Microsoft Machine Learning Engineer program at DEPI</strong> gave me hands-on experience taking models from <strong>raw data to working applications</strong>.</p>
+        <div class="lead__stack">
+          <span class="lead__k">Core stack</span>
+          <ul class="lead__chips">
+            <li>Python</li><li>Deep learning</li><li>NLP</li><li>RAG</li><li>LangGraph</li>
+          </ul>
+        </div>
+      </div>
       <div class="stats">
-        <div><strong>3.54</strong><span>GPA out of 4.00</span></div>
-        <div><strong>3</strong><span>Projects built</span></div>
-        <div><strong>3</strong><span>Internships and programs</span></div>
+        <a class="stat" href="#education">
+          <span class="stat__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+          <strong class="stat__num"><span class="n" data-count="3.54" data-dec="2">3.54</span><small>/ 4.00</small></strong>
+          <span class="stat__label">GPA</span>
+          <span class="stat__meter" aria-hidden="true"><i style="--v: 88.5%"></i></span>
+        </a>
+        <a class="stat" href="#projects">
+          <span class="stat__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
+          <strong class="stat__num"><span class="n" data-count="3" data-dec="0">3</span></strong>
+          <span class="stat__label">Projects built</span>
+          <span class="stat__meter stat__meter--seg" aria-hidden="true"><i></i><i></i><i></i></span>
+        </a>
+        <a class="stat" href="#experience">
+          <span class="stat__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+          <strong class="stat__num"><span class="n" data-count="3" data-dec="0">3</span></strong>
+          <span class="stat__label">Internships and programs</span>
+          <span class="stat__meter stat__meter--seg" aria-hidden="true"><i></i><i></i><i></i></span>
+        </a>
       </div>
       <div class="hero__cta">
         <a class="btn" href="#projects">View projects</a>
@@ -421,8 +483,9 @@
     </a>
 
     <a class="showcase__item showcase__item--main" href="#tourmate">
-      <figure class="shot" data-tourmate-hero>
+      <figure class="shot">
         <figcaption class="shot__ph"><strong>TourMate · Screen 1</strong><span>Portrait screenshot goes here</span></figcaption>
+        <img src="images/projects/tourmate-1.png" alt="TourMate AI app screen" onload="this.classList.add('is-loaded')" onerror="this.remove()">
       </figure>
       <span class="showcase__cap"><strong>TourMate AI</strong><span>Graduation project</span></span>
     </a>
@@ -456,7 +519,7 @@
             <div class="meta"><span class="eyebrow">Graduation project</span><span class="date">2025 – 2026</span></div>
             <h3 class="project__title">TourMate AI</h3>
             <h4 class="project__sub">An agentic AI travel planning assistant.</h4>
-            <p class="muted">Turns a chat request into a multi-day itinerary. I co-built the AI engine with one teammate in a 6-member team (2 AI, 2 backend, 2 Flutter): a LangGraph pipeline covering profile loading, place retrieval and scoring, LLM planning, route optimization and validation with retries.</p>
+            <p class="muted">Turns a chat request into a multi-day itinerary. I co-built the AI engine with one teammate: a LangGraph pipeline covering profile loading, place retrieval and scoring, LLM planning, route optimization and validation with retries.</p>
             <div class="tags">
               <span class="tag">LangGraph</span><span class="tag">LangChain</span><span class="tag">Gemini 2.5 Flash</span><span class="tag">Groq Llama 3.3</span><span class="tag">Pydantic</span><span class="tag">Redis</span><span class="tag">OSRM</span><span class="tag">LangSmith</span>
             </div>
@@ -472,12 +535,12 @@
             <div class="detail"><h4>Routing and observability</h4><p class="muted">Route optimization with OSRM and 2-opt, plus LangSmith tracing with per-agent token and latency tracking.</p></div>
           </div>
         </div>
-        <!-- Image section. Screens are loaded from the GitHub repo (see TOURMATE_FILES at the bottom). -->
-        <div class="gallery--portrait" id="tourmate-gallery">
-          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 1</strong><span>Portrait screenshot goes here</span></figcaption></figure>
-          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 2</strong><span>Portrait screenshot goes here</span></figcaption></figure>
-          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 3</strong><span>Portrait screenshot goes here</span></figcaption></figure>
-          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 4</strong><span>Portrait screenshot goes here</span></figcaption></figure>
+        <!-- Image section -->
+        <div class="gallery--portrait">
+          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 1</strong><span>Portrait screenshot goes here</span></figcaption><img src="images/projects/tourmate-1.png" alt="TourMate AI app screen 1" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 2</strong><span>Portrait screenshot goes here</span></figcaption><img src="images/projects/tourmate-2.png" alt="TourMate AI app screen 2" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 3</strong><span>Portrait screenshot goes here</span></figcaption><img src="images/projects/tourmate-3.png" alt="TourMate AI app screen 3" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
+          <figure class="shot"><figcaption class="shot__ph"><strong>TourMate · Screen 4</strong><span>Portrait screenshot goes here</span></figcaption><img src="images/projects/tourmate-4.png" alt="TourMate AI app screen 4" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.remove()"></figure>
         </div>
       </article>
 
@@ -581,9 +644,9 @@
 
       <article class="exp">
         <p class="exp__org"><strong>Digital Egypt Pioneers</strong><span>DEPI</span><span>Jun 2025 – Dec 2025</span></p>
-        <h3>Microsoft AI Engineer Trainee</h3>
+        <h3>Microsoft Machine Learning Engineer Trainee</h3>
         <ul>
-          <li>Completed a 6-month intensive ML and AI training program sponsored by Egypt's Ministry of Communications and Information Technology.</li>
+          <li>Completed a 6-month intensive machine learning training program sponsored by Egypt's Ministry of Communications and Information Technology.</li>
           <li>Gained hands-on experience in supervised and unsupervised learning, feature engineering, model evaluation, deep learning, NLP and computer vision.</li>
           <li>Built ML solutions with Python, Scikit-learn, Pandas and NumPy through collaborative projects and workshops.</li>
         </ul>
@@ -677,48 +740,6 @@
   </div>
 </footer>
 
-<script>
-  /* TOURMATE AI SCREENS (from the GitHub repo)
-     Paste the file names found in docs/App Screens of
-     github.com/AbdelrahmanMostafa33/TourMate-AI into the list below, in the order you want them shown,
-     for example "Screen 1.png". The first one is also used in the hero.
-     A full URL, or a path that starts with "images/", works too.
-     While the list is empty the placeholders stay in place. */
-  const TOURMATE_BASE = "https://raw.githubusercontent.com/AbdelrahmanMostafa33/TourMate-AI/main/docs/App%20Screens/";
-  const TOURMATE_FILES = [
-    // "Screen 1.png",
-    // "Screen 2.png",
-  ];
-
-  (function () {
-    if (!TOURMATE_FILES.length) return;
-    const url = (f) => /^(https?:|images\/)/.test(f) ? f : TOURMATE_BASE + encodeURIComponent(f);
-    function addImage(parent, file, alt, onFail) {
-      const img = document.createElement('img');
-      img.alt = alt;
-      img.loading = 'lazy';
-      img.addEventListener('load', function () { img.classList.add('is-loaded'); });
-      img.addEventListener('error', onFail);
-      img.src = url(file);
-      parent.appendChild(img);
-    }
-    const hero = document.querySelector('[data-tourmate-hero]');
-    if (hero) {
-      addImage(hero, TOURMATE_FILES[0], 'TourMate AI app screen 1', function () { this.remove(); });
-    }
-    const gallery = document.getElementById('tourmate-gallery');
-    if (gallery) {
-      gallery.textContent = '';
-      TOURMATE_FILES.forEach(function (file, i) {
-        const fig = document.createElement('figure');
-        fig.className = 'shot';
-        addImage(fig, file, 'TourMate AI app screen ' + (i + 1), function () { fig.remove(); });
-        gallery.appendChild(fig);
-      });
-    }
-  })();
-</script>
-
 <dialog id="lightbox" aria-label="Enlarged image"><button class="lb__x" type="button" aria-label="Close image">✕</button><img alt=""></dialog>
 
 <script>
@@ -745,6 +766,20 @@
       if (m && !m.closest('a')) { li.src = m.currentSrc || m.src; li.alt = m.alt; lb.showModal(); return; }
       if (e.target === lb || e.target === li || e.target.closest('.lb__x')) lb.close();
     });
+
+    /* Count the hero numbers up once, after the hero entrance (skipped for reduced motion) */
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const end = parseFloat(el.dataset.count), dec = +el.dataset.dec || 0, start = performance.now() + 450, dur = 1100;
+        el.textContent = (0).toFixed(dec);
+        const tick = now => {
+          const p = Math.min(Math.max((now - start) / dur, 0), 1);
+          el.textContent = (end * (1 - Math.pow(1 - p, 3))).toFixed(dec);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }
   })();
 </script>
 </body>
